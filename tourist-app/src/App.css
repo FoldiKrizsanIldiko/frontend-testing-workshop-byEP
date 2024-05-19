@@ -12,12 +12,12 @@
   padding: 0.6em 1.2em;
   font-size: 1.2em;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #e66ac9;
   cursor: pointer;
 }
 
 .card:hover {
-  background-color: #363636;
+  background-color: #ebe57d;
 }
 
 #country-selector {
