@@ -8,7 +8,7 @@ export default function CountryName({countryData}) {
   return (
     <div className='country-name'>
       <div>{countryData.flag}</div>
-      <div>{countryData.name.official}</div>
+      <div>{countryData.name.common}</div>
       <Star/>
     </div>
   );

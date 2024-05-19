@@ -8,7 +8,7 @@ export default function Search() {
   const [countries, setCountries] = useState(null);
   const [query, setQuery] = useState('');
   const filteredCountries = query === '' || countries === null ? countries : countries.filter(c => {
-    return c.name.official.toUpperCase().includes(query.toUpperCase())
+    return c.name.common.toUpperCase().includes(query.toUpperCase())
   })
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Search() {
           ? filteredCountries.map(c => {
             return <div
               onClick={() => navigate(`/country/${c.cca3}`)}
-              className='card' key={c.cca3}>{c.name.official}</div>
+              className='card' key={c.cca3}>{c.name.common}</div>
           })
           : <p>Loading list of countries...</p>
         }
