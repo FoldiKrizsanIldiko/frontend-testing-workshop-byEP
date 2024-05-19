@@ -20,6 +20,7 @@ describe('Country component', () => {
     expect(screen.queryByText('Budapest', {exact: false})).not.toBeInTheDocument();
 
     // findBy uses waitFor, it is async
+    expect(await screen.findByText('Hungary common')).toBeInTheDocument();
     expect(await screen.findByText('Hungarian forint', {exact: false})).toBeInTheDocument();
     expect(await screen.findByText('Budapest', {exact: false})).toBeInTheDocument();
     expect(await screen.findByText('🇭🇺')).toBeInTheDocument();

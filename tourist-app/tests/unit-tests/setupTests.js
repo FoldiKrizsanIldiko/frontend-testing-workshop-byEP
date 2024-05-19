@@ -15,7 +15,7 @@ const countries = [
   {
     'cca3': 'HUN',
     'name': {
-      'common':'Hungary',
+      'common':'Hungary common',
       'official':'Hungary',
       'nativeName':{'hun':{'common':'Magyarország','official':'Magyarország'}}
     },
@@ -41,7 +41,7 @@ const countries = [
   {
     'cca3': 'JPN',
     'name':{
-      'common':'Japan',
+      'common':'Japan common',
       'official':'Japan',
       'nativeName':{'jpn':{'common':'日本','official':'日本'}}
     },
