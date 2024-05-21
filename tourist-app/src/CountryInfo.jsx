@@ -7,7 +7,8 @@ export default function CountryInfo({countryData}) {
       <div> Capital: {countryData.capitals[0]}</div>
       <div> Currencies: {
         Object.values(countryData.currencies).map(
-          curr => <span key={curr.name}>{curr.name}</span>
+          curr => <><span key={curr.name}>  {curr.name}  -  </span>
+          <span key={curr.symbol}>Symbol:  {curr.symbol}</span></>
         )
         }
       </div>

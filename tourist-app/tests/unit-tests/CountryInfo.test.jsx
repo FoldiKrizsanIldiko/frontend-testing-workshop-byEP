@@ -30,5 +30,6 @@ describe('CountryInfo component', () => {
     //assert
     expect(screen.getByText('Stockholm', {exact: false})).toBeInTheDocument();
     expect(screen.getByText('Swedish krona', {exact: false})).toBeInTheDocument();
+    expect(screen.getByText("Symbol: kr", { exact: false })).toBeInTheDocument();
   });
 });
