@@ -1,70 +1,73 @@
 // Vitest configuration
-import { expect, afterAll, afterEach, beforeAll } from 'vitest';
-import * as matchers from '@testing-library/jest-dom/matchers';
+import { expect, afterAll, afterEach, beforeAll } from "vitest";
+import * as matchers from "@testing-library/jest-dom/matchers";
 // Add jest-dom matchers to expect, so we can use DOM-matchers such as `toHaveTextContent` etc.
 expect.extend(matchers);
 
 // MSW configuration
-import { setupServer } from 'msw/node';
-import { HttpResponse, http } from 'msw';
+import { setupServer } from "msw/node";
+import { HttpResponse, http } from "msw";
 
 // App related imports
-import { API_URL } from '../../src/api';
+import { API_URL } from "../../src/api";
 
 const countries = [
   {
-    'cca3': 'HUN',
-    'name': {
-      'common':'Hungary common',
-      'official':'Hungary',
-      'nativeName':{'hun':{'common':'Magyarország','official':'Magyarország'}}
+    cca3: "HUN",
+    name: {
+      common: "Hungary common",
+      official: "Hungary",
+      nativeName: { hun: { common: "Magyarország", official: "Magyarország" } },
     },
-    'currencies': {
-      'HUF':{'name':'Hungarian forint','symbol':'Ft'}
+    currencies: {
+      HUF: { name: "Hungarian forint", symbol: "Ft" },
     },
-    'capitals': ['Budapest'],
-    'flag':'🇭🇺',
+    capitals: ["Budapest"],
+    flag: "🇭🇺",
   },
   {
-    'cca3': 'ESP',
-    'name': {
-      'common':'Spain',
-      'official':'Kingdom of Spain',
-      'nativeName':{'spa':{'common':'España','official':'Reino de España'}}
+    cca3: "ESP",
+    name: {
+      common: "Spain",
+      official: "Kingdom of Spain",
+      nativeName: { spa: { common: "España", official: "Reino de España" } },
     },
-    'currencies':{
-      'EUR':{'name':'Euro','symbol':'€'}
+    currencies: {
+      EUR: { name: "Euro", symbol: "€" },
     },
-    'capitals': ['Madrid'],
-    'flag':'🇪🇸',
+    capitals: ["Madrid"],
+    flag: "🇪🇸",
   },
   {
-    'cca3': 'JPN',
-    'name':{
-      'common':'Japan common',
-      'official':'Japan',
-      'nativeName':{'jpn':{'common':'日本','official':'日本'}}
+    cca3: "JPN",
+    name: {
+      common: "Japan common",
+      official: "Japan",
+      nativeName: { jpn: { common: "日本", official: "日本" } },
     },
-    'currencies': {
-      'JPY':{'name':'Japanese yen','symbol':'¥'}
+    currencies: {
+      JPY: { name: "Japanese yen", symbol: "¥" },
     },
-    'capitals': ['Tokyo'],
-    'flag':'🇯🇵',
-  }
+    capitals: ["Tokyo"],
+    flag: "🇯🇵",
+  },
 ];
 
 export const restHandlers = [
   http.get(`${API_URL}/by-cca3/:cca`, (request) => {
     const cca = request.params.cca;
-    const  countryData = countries.find(c => c.cca3 === cca.toUpperCase());
+    const countryData = countries.find((c) => c.cca3 === cca.toUpperCase());
     return HttpResponse.json(countryData);
   }),
-]
+  http.get(`${API_URL}/all`, (request) => {
+    return HttpResponse.json(countries);
+  }),
+];
 
 const server = setupServer(...restHandlers);
 
 // Start server before all tests
-beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
 
 //  Close server after all tests
 afterAll(() => server.close());
